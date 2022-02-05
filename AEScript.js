@@ -160,6 +160,10 @@ function toggleLayer(name){
     comp.layer(name).enabled = !comp.layer(name).enabled
 }
 
+function showLayer(name, show){
+    comp.layer(name).enabled = show
+}
+
 function toggleMargin(){
     toggleLayer("Margin")
     toggleLayer("marginDown")
@@ -170,6 +174,71 @@ function toggleMargin(){
     toggleLayer("marginRightValue")
     toggleLayer("marginLeftValue")
     toggleLayer("marginUpValue")
+}
+
+function showMargin(show){
+    showLayer("Margin", show)
+    showLayer("marginDown", show)
+    showLayer("marginRight", show)
+    showLayer("marginLeft", show)
+    showLayer("marginUp", show)
+    showLayer("marginDownValue", show)
+    showLayer("marginRightValue", show)
+    showLayer("marginLeftValue", show)
+    showLayer("marginUpValue", show)
+}
+
+function showPadding(show){
+    showLayer("Padding", show)
+    showLayer("paddingDown", show)
+    showLayer("paddingRight", show)
+    showLayer("paddingLeft", show)
+    showLayer("paddingUp", show)
+    showLayer("paddingDownValue", show)
+    showLayer("paddingRightValue", show)
+    showLayer("paddingLeftValue", show)
+    showLayer("paddingUpValue", show)
+}
+
+function showBorder(show){
+    showLayer("Border", show)
+    showLayer("borderDown", show)
+    showLayer("borderRight", show)
+    showLayer("borderLeft", show)
+    showLayer("borderUp", show)
+    showLayer("borderDownValue", show)
+    showLayer("borderRightValue", show)
+    showLayer("borderLeftValue", show)
+    showLayer("borderUpValue", show)
+}
+
+function showMeasures(show){
+    showLayer("borderDown", show)
+    showLayer("borderRight", show)
+    showLayer("borderLeft", show)
+    showLayer("borderUp", show)
+    showLayer("borderDownValue", show)
+    showLayer("borderRightValue", show)
+    showLayer("borderLeftValue", show)
+    showLayer("borderUpValue", show)
+
+    showLayer("marginDown", show)
+    showLayer("marginRight", show)
+    showLayer("marginLeft", show)
+    showLayer("marginUp", show)
+    showLayer("marginDownValue", show)
+    showLayer("marginRightValue", show)
+    showLayer("marginLeftValue", show)
+    showLayer("marginUpValue", show)
+
+    showLayer("paddingDown", show)
+    showLayer("paddingRight", show)
+    showLayer("paddingLeft", show)
+    showLayer("paddingUp", show)
+    showLayer("paddingDownValue", show)
+    showLayer("paddingRightValue", show)
+    showLayer("paddingLeftValue", show)
+    showLayer("paddingUpValue", show)
 }
 
 function togglePadding(){
@@ -204,6 +273,81 @@ function setKey(name, time, value){
     var ease = new KeyframeEase(1, 33);
     global(name).setValueAtTime(time,value)
     global(name).setTemporalEaseAtKey(1, [ease], [ease]);
+}
+
+function setPaddingKeys(time, values){
+    switch (values.length) {
+        case 1:
+            setKey("paddingLeft",  time, values[0])
+            setKey("paddingUp",    time, values[0])
+            setKey("paddingRight", time, values[0])
+            setKey("paddingDown",  time, values[0])
+            break;
+        case 2:
+            setKey("paddingDown",  time, values[0])
+            setKey("paddingUp",    time, values[0])
+            setKey("paddingLeft",  time, values[1])
+            setKey("paddingRight", time, values[1])
+            break;
+        case 4:
+            setKey("paddingUp",    time, values[0])
+            setKey("paddingRight", time, values[1])
+            setKey("paddingDown",  time, values[2])
+            setKey("paddingLeft",  time, values[3])
+            break;
+        default:
+            break;
+    }
+}
+
+function setBorderKeys(time, values){
+    switch (values.length) {
+        case 1:
+            setKey("borderLeft",  time, values[0])
+            setKey("borderUp",    time, values[0])
+            setKey("borderRight", time, values[0])
+            setKey("borderDown",  time, values[0])
+            break;
+        case 2:
+            setKey("borderDown",  time, values[0])
+            setKey("borderUp",    time, values[0])
+            setKey("borderLeft",  time, values[1])
+            setKey("borderRight", time, values[1])
+            break;
+        case 4:
+            setKey("borderUp",    time, values[0])
+            setKey("borderRight", time, values[1])
+            setKey("borderDown",  time, values[2])
+            setKey("borderLeft",  time, values[3])
+            break;
+        default:
+            break;
+    }
+}
+
+function setMarginKeys(time, values){
+    switch (values.length) {
+        case 1:
+            setKey("marginLeft",  time, values[0])
+            setKey("marginUp",    time, values[0])
+            setKey("marginRight", time, values[0])
+            setKey("marginDown",  time, values[0])
+            break;
+        case 2:
+            setKey("marginDown",  time, values[0])
+            setKey("marginUp",    time, values[0])
+            setKey("marginLeft",  time, values[1])
+            setKey("marginRight", time, values[1])
+            break;
+        case 4:
+            setKey("marginUp",    time, values[0])
+            setKey("marginRight", time, values[1])
+            setKey("marginDown",  time, values[2])
+            setKey("marginLeft",  time, values[3])
+            break;
+        default:
+            break;
+    }
 }
 
 var project = app.project
@@ -250,22 +394,62 @@ var yd4 = yd3 + "+" + marginDown
 
 // createElements()
 
-// toggleMargin()
-// toggleBorder()
+// toggleMargin() 
+// toggleBorder() 
 // togglePadding()
 
+showBorder(true)
+showMargin(false)
+showPadding(true)
+
+showMeasures(false)
+
+// setKey("width", 0, 100)
+// setKey("width", 1, 100)
+// setKey("width", 2, 200)
+// setKey("width", 3, 200)
+// setKey("width", 4, 100)
+
+// setKey("height", 0, 100)
+// setKey("height", 5, 100)
+// setKey("height", 6, 200)
+// setKey("height", 7, 200)
+// setKey("height", 8, 100)
 
 
-setKey("width", 0, 100)
-setKey("width", 1, 100)
-setKey("width", 2, 200)
-setKey("width", 3, 200)
-setKey("width", 4, 100)
+setPaddingKeys(0, [1])
+setBorderKeys(0, [1])
 
-setKey("height", 0, 100)
-setKey("height", 5, 100)
-setKey("height", 6, 200)
-setKey("height", 7, 200)
-setKey("height", 8, 100)
+setPaddingKeys(1, [100])
+setPaddingKeys(2, [100])
+setPaddingKeys(3, [1])
+setPaddingKeys(4, [1])
 
+setPaddingKeys(5, [1,1])
+setPaddingKeys(6, [100,1])
+setPaddingKeys(7, [100,1])
+setPaddingKeys(8, [1,1])
+setPaddingKeys(9, [1,1])
 
+setPaddingKeys(10, [1,1])
+setPaddingKeys(11, [1,100])
+setPaddingKeys(12, [1,100])
+
+setPaddingKeys(13, [100])
+setPaddingKeys(14, [100])
+
+setBorderKeys(15, [1])
+setBorderKeys(16, [100])
+setBorderKeys(17, [100])
+setBorderKeys(18, [1])
+setBorderKeys(19, [1])
+
+setBorderKeys(20, [1,1])
+setBorderKeys(21, [100,1])
+setBorderKeys(22, [100,1])
+setBorderKeys(23, [1,1])
+setBorderKeys(24, [1,1])
+
+setBorderKeys(25, [1,1])
+setBorderKeys(26, [1,100])
+setBorderKeys(27, [1,100])
